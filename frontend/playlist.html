@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Live Playlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./styles.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="container">
+    <nav class="topnav">
+      <a class="brand" href="./index.html">🎧 Mood & Pace</a>
+      <div class="links">
+        <a href="./index.html">Poll & Results</a>
+        <a class="active" href="./playlist.html">Playlist</a>
+      </div>
+    </nav>
+    <h1>Live Playlist</h1>
+    <p class="subtitle">Ranked in real time by the crowd’s mood & pace.</p>
+  </header>
+
+  <main class="container">
+    <section class="card playlist">
+      <div class="card-head">
+        <h2>Playlist</h2>
+        <button id="reset" class="btn ghost">Reset Poll & Played</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="playlist">
+          <thead>
+            <tr>
+              <th>Score</th>
+              <th>Song</th>
+              <th>Moods</th>
+              <th>Paces</th>
+              <th>Played?</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container foot">
+    <small>MVP demo • updates every second via SSE</small>
+  </footer>
+
+  <script src="./playlist.js" type="module"></script>
+</body>
+</html>

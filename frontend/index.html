@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mood & Pace Poll → Live Playlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./styles.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="container">
+    <h1>🎧 Mood & Pace Poll → Live Playlist</h1>
+    <p class="subtitle">Pick your vibe, watch the crowd—see the playlist evolve in real time.</p>
+  </header>
+
+  <main class="container grid">
+    <!-- Section 1: Poll -->
+    <section class="card">
+      <div class="card-head">
+        <h2>1) Submit your vibe</h2>
+        <div class="chipbar">
+          <button class="chip ghost" data-action="select-all-moods">Select all moods</button>
+          <button class="chip ghost" data-action="clear-moods">Clear moods</button>
+          <span class="sep"></span>
+          <button class="chip ghost" data-action="select-all-paces">Select all paces</button>
+          <button class="chip ghost" data-action="clear-paces">Clear paces</button>
+        </div>
+      </div>
+
+      <form id="poll-form" class="stack">
+        <div class="group">
+          <label class="group-label">Moods</label>
+          <div id="mood-tiles" class="tiles" role="group" aria-label="Mood options"></div>
+        </div>
+
+        <div class="group">
+          <label class="group-label">Pace</label>
+          <div id="pace-tiles" class="tiles" role="group" aria-label="Pace options"></div>
+        </div>
+
+        <button type="submit" class="btn primary">Submit</button>
+      </form>
+    </section>
+
+    <!-- Section 2: Live Polling Results -->
+    <section class="card">
+      <h2>2) Live poll results</h2>
+      <div class="results">
+        <div>
+          <h3>Moods</h3>
+          <ul id="mood-counts"></ul>
+        </div>
+        <div>
+          <h3>Pace</h3>
+          <ul id="pace-counts"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Live Playlist -->
+    <section class="card">
+      <div class="card-head">
+        <h2>3) Live playlist</h2>
+        <button id="reset" class="btn ghost">Reset Poll & Played</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="playlist">
+          <thead>
+            <tr>
+              <th>Score</th>
+              <th>Song</th>
+              <th>Moods</th>
+              <th>Paces</th>
+              <th>Played?</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container foot">
+    <small>MVP demo • updates every second via SSE</small>
+  </footer>
+
+  <script src="./script.js" type="module"></script>
+</body>
+</html>

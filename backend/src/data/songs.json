@@ -1,0 +1,7 @@
+[
+  { "id": "1", "name": "Sunrise Drive", "moods": ["happy", "energetic"], "paces": ["fast"], "played": false },
+  { "id": "2", "name": "Midnight Chill", "moods": ["calm", "melancholic"], "paces": ["slow"], "played": false },
+  { "id": "3", "name": "Focus Flow", "moods": ["focused", "neutral"], "paces": ["medium"], "played": false },
+  { "id": "4", "name": "Party Starter", "moods": ["excited", "happy"], "paces": ["fast"], "played": false },
+  { "id": "5", "name": "Deep Work", "moods": ["focused"], "paces": ["medium", "slow"], "played": false }
+]
