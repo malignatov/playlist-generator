@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mood & Pace Poll → Live Playlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./styles.css" rel="stylesheet" />
+</head>
+
+
+
+<!-- Add this before </body> in results.html -->
+<script type="module">
+  const moodList = document.getElementById("mood-counts");
+  const paceList = document.getElementById("pace-counts");
+
+  function renderCounts(el, counts) {
+    const entries = Object.entries(counts || {}).sort((a, b) => b[1] - a[1]);
+    el.innerHTML = entries.length
+      ? entries.map(([k, v]) => `<li><strong>${k}</strong>: ${v}</li>`).join("")
+      : `<li class="muted">No votes yet</li>`;
+  }
+
+  function startSSE() {
+    const es = new EventSource("/events");
+    es.onmessage = (ev) => {
+      try {
+        const data = JSON.parse(ev.data);
+        if (data.moodCounts) renderCounts(moodList, data.moodCounts);
+        if (data.paceCounts) renderCounts(paceList, data.paceCounts);
+      } catch (e) {
+        console.warn("SSE parse issue", e);
+      }
+    };
+    es.onerror = () => {
+      console.warn("SSE connection lost, retrying automatically…");
+    };
+  }
+
+  startSSE();
+</script>
+
+
+
+<body>
+  <header class="container">
+    <h1>🎧 Mood & Pace Poll → Live Playlist</h1>
+    <p class="subtitle">Pick your vibe, watch the crowd—see the playlist evolve in real time.</p>
+  </header>
+
+  <main class="container grid">
+    <!-- Section 2: Live Polling Results -->
+    <section class="card">
+      <h2>2) Live poll results</h2>
+      <div class="results">
+        <div>
+          <h3>Moods</h3>
+          <ul id="mood-counts"></ul>
+        </div>
+        <div>
+          <h3>Pace</h3>
+          <ul id="pace-counts"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container foot">
+    <small>MVP demo • updates every second via SSE</small>
+  </footer>
+
+  <script src="./script.js" type="module"></script>
+</body>
+</html>
